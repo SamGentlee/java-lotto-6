@@ -11,7 +11,7 @@ import java.util.List;
 public class Application {
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+
     }
 
     public static int getLottoCount(int input) {
@@ -50,6 +50,18 @@ public class Application {
         if(lottoNumber < 1 || lottoNumber > 45) return false;
         return true;
     }
+
+    //랜덤 로또 번호들만 있는 리스트 만들기
+    public static List<List<Integer>> getRandomLottos(List<List<Integer>> randomLottos, List<Integer> lottoNumbers){
+            randomLottos.add(lottoNumbers);
+            for(List<Integer> lottos : randomLottos){
+                System.out.println(lottos);
+            }
+            return randomLottos;
+    }
+
+
+
 
     public static int inputBonusNumber(Lotto winningLottoNumbers){
         String inputValue = Console.readLine();
