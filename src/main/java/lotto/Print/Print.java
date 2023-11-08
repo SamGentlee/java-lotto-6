@@ -16,13 +16,11 @@ public class Print {
     }
 
     //구입한 로또 개수와 번호 출력
-    public static List<Lotto> printPaidLottoResult(int lottoBuyCount){
+    public static void printPaidLottoResult(List<Lotto> paidLottos,int lottoBuyCount){
         System.out.printf("\n"+Message.INFORM_LOTTO_COUNT_MESSAGE+"\n",lottoBuyCount);
-        List<Lotto> paidLottoNumbers = LottoGame.getPaidLottoNumbers(lottoBuyCount);
-        for(Lotto paidLotto : paidLottoNumbers){
-            System.out.println(paidLotto.printNumbers());
+        for(Lotto paidLotto : paidLottos){
+            System.out.println(paidLotto.getNumbers());
         }
-        return paidLottoNumbers;
     }
 
     public static void printWinningLottoNumber(){
@@ -43,7 +41,7 @@ public class Print {
 
     public static void printWinningResultRate(Map<WinningResult,Integer> winningResultCountMap, int lottoBuyCount){
         double totalPrice = Result.calcProfitRate(winningResultCountMap,lottoBuyCount);
-        System.out.println(Message.INFORM_FIRST_LOTTO_RESULT_PROFIT_RATE+String.format("%.2f",totalPrice)
+        System.out.println(Message.INFORM_FIRST_LOTTO_RESULT_PROFIT_RATE+String.format("%.1f",totalPrice)
                 +Message.INFORM_SECOND_LOTTO_RESULT_PROFIT_RATE);
     }
 

@@ -13,9 +13,7 @@ public class Validator {
             }
             return buyPrice;
         }catch(NumberFormatException exception){
-            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_PRICE_ERROR);
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_FORMAT);
         }
     }
-
-
 }

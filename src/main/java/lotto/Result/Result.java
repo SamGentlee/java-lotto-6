@@ -42,7 +42,6 @@ public class Result {
         Map<WinningResult,Integer> winningResultCountMap = initializeWinningResultCountMap();
         for(WinningResult result : winningResults){
             if(winningResultCountMap.containsKey(result)){
-                System.out.println(result);
                 winningResultCountMap.put(result,winningResultCountMap.get(result)+1);
             }
         }

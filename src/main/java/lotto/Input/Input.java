@@ -13,41 +13,50 @@ import java.util.List;
 public class Input {
     //입력받은 구입 금액으로 로또 개수 구하기
     public static int getLottoBuyCount() {
-        Print.printBuyLotto();
-        String inputValue = Console.readLine();
-        int buyPrice = 0;
         try{
-            buyPrice = Validator.checkLottoBuyPrice(inputValue);
+            Print.printBuyLotto();
+            String inputValue = Console.readLine();
+            int buyPrice = Validator.checkLottoBuyPrice(inputValue);
+            return buyPrice / 1000;
         }catch(IllegalArgumentException e){
-            System.out.println(ErrorMessage.INVALID_NUMBER_FORMAT);
+            System.out.println(e.getMessage());
+            return getLottoBuyCount();
         }
-        return buyPrice / 1000;
     }
 
     public static Lotto getWinningLottoNumbers(){
-        Print.printWinningLottoNumber();
-        String inputValue = Console.readLine();
-        List<Integer> winningLottoNumbers = new ArrayList<Integer>();
-        String[] values = inputValue.split(",");
-        for(String value : values) {
-            try{
-                winningLottoNumbers.add(Integer.parseInt(value));
-            }catch(NumberFormatException exception){
-                System.out.println(ErrorMessage.INVALID_NUMBER_FORMAT);
-                throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_FORMAT);
+        try{
+            Print.printWinningLottoNumber();
+            String inputValue = Console.readLine();
+            List<Integer> winningLottoNumbers = new ArrayList<Integer>();
+            String[] values = inputValue.split(",");
+            for(String value : values) {
+                try{
+                    winningLottoNumbers.add(Integer.parseInt(value));
+                }catch(NumberFormatException exception){
+                    throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_FORMAT);
+                }
             }
+            return new Lotto(winningLottoNumbers);
+        }catch(IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return getWinningLottoNumbers();
         }
         //Collections.sort(winningLottoNumbers);
-        return new Lotto(winningLottoNumbers);
     }
 
     public static int getBonusNumber(){
-        Print.printBonusNumber();
-        String inputValue = Console.readLine();
-        try{
-            return Integer.parseInt(inputValue);
-        }catch(NumberFormatException e){
-            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_FORMAT);
+        try {
+            Print.printBonusNumber();
+            String inputValue = Console.readLine();
+            try {
+                return Integer.parseInt(inputValue);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_FORMAT);
+            }
+        }catch(IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return getBonusNumber();
         }
     }
 

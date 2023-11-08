@@ -5,7 +5,7 @@ public enum WinningResult {
     FIFTH_WIN(3,false,5000),
     FOURTH_WIN(4,false,50000),
     THIRD_WIN(5,false,1500000),
-    SECOND_WIN(5,true,15000000),
+    SECOND_WIN(5,true,30000000),
     FIRST_WIN(6,false,2000000000);
 
     private final int numberCount;

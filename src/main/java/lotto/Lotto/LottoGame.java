@@ -14,8 +14,11 @@ public class LottoGame {
     public static void run(){
 //        int lottoBuyCount = 8;
         int lottoBuyCount = Input.getLottoBuyCount();
-        List<Lotto> paidLottos = Print.printPaidLottoResult(lottoBuyCount);
+//        List<Lotto> paidLottos = Print.printPaidLottoResult(lottoBuyCount);
+        List<Lotto> paidLottos = LottoGame.getPaidLottoNumbers(lottoBuyCount);
+//        List<Lotto> paidLottos = Print.printPaidLottoResult(lottoBuyCount);
 //        List<Lotto> paidLottos = new ArrayList<>();
+        Print.printPaidLottoResult(paidLottos,lottoBuyCount);
 //        paidLottos.add(new Lotto(List.of(8, 21, 23, 41, 42, 43)));
 //        paidLottos.add(new Lotto(List.of(3, 5, 11, 16, 32, 38)));
 //        paidLottos.add(new Lotto(List.of(7, 11, 16, 35, 36, 44)));
@@ -33,16 +36,16 @@ public class LottoGame {
 
     //구입한 로또 리스트 구하기
     public static List<Lotto> getPaidLottoNumbers(int lottoBuyCount){
-        List<Lotto> paidLottoNumbers = new ArrayList<>();
-        for(int i=0;i<lottoBuyCount;i++){
-            paidLottoNumbers.add(getRandomLottoNumber());
-        }
-        return paidLottoNumbers;
+            List<Lotto> paidLottoNumbers = new ArrayList<>();
+            for(int i=0;i<lottoBuyCount;i++){
+                paidLottoNumbers.add(getRandomLottoNumber());
+            }
+            return paidLottoNumbers;
     }
 
     //랜덤 로또 번호 구하기
     public static Lotto getRandomLottoNumber() {
-        return new Lotto(Randoms.pickUniqueNumbersInRange(1,45,6));
+        return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
     }
 
     public static WinningLotto getWinningLotto(){
